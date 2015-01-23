@@ -15,9 +15,9 @@
   <ul>
   	<% @stylists.each do |stylist| %>
   	  <li><a href="/stylists/<%= stylist.id() %>"><%= stylist.stylist_name() %></a></li>
-  	<% end %>
+    <% end %>
   </ul>
-  <% else %>
-    <p>There are no stylists yet!</p>
-  <% end %>
+<% else %>
+  <p>There are no stylists yet!</p>
+<% end %>
 
