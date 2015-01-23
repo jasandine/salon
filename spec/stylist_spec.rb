@@ -18,6 +18,21 @@ describe(Stylist) do
   	end
   end
 
+  describe("#stylist_name") do 
+  	it("returns stylist name") do 
+  		stylist = Stylist.new({:stylist_name => "Bobby Boulders", :id => nil})
+  		expect(stylist.stylist_name()).to(eq("Bobby Boulders"))
+  	end
+  end
+
+  describe("#id") do 
+  	it("sets a stylists ID when you save it") do 
+  		stylist = Stylist.new({:stylist_name => "Bobby Boulders", :id => nil})
+  		stylist.save()
+  		expect(stylist.id()).to(be_an_instance_of(Fixnum))
+  	end
+  end
+
   describe("#save") do 
   	it("lets you save stylists to the database") do 
   		stylist = Stylist.new({:stylist_name => "GZA", :id => nil})
@@ -34,4 +49,13 @@ describe(Stylist) do
   	end
   end
 
+  describe("#clients") do 
+  	it("returns an array of clients for a single stylist") do 
+  		test_stylist = Stylist.new({:stylist_name => "Bobby Boulders", :id => nil})
+  		test_stylist.save()
+  		test_client = Client.new({:client_name => "Tony Starx", :stylist_id => test_stylist.id()})
+  		test_client.save()
+  		expect(test_stylist.clients()).to(eq([test_client]))
+  	end
+  end
 end
